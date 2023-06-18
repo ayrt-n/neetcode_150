@@ -16,7 +16,5 @@ def anagram?(s, t)
 end
 
 def count_letters(str)
-  result = Hash.new(0)
-  str.each_char { |c| result[c] += 1 }
-  result
+  str.chars.each_with_object(Hash.new(0)) { |char, hash| hash[char] += 1 }
 end
