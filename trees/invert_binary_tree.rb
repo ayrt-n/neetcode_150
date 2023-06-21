@@ -11,6 +11,8 @@ class TreeNode
   end
 end
 
+# Time complexity: O(n)
+# Space complexity: O(n)
 def invert_tree(root)
   return nil unless root
 
