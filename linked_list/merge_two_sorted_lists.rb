@@ -10,6 +10,8 @@ class ListNode
   end
 end
 
+# Time complexity: O(n)
+# Space complexity: O(1)
 def merge_two_lists(list1, list2)
   result = ListNode.new
   result_tail = result
