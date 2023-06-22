@@ -11,25 +11,18 @@ class TreeNode
   end
 end
 
-def diameter_of_binary_tree(root)
-  return 0 if root.nil?
+def diameter_of_binary_tree(root, height = { h: 0 })
+  l_height = { h: 0 }
+  r_height = { h: 0 }
 
-  left_height = height_of_tree(root.left)
-  right_height = height_of_tree(root.right)
+  if root.nil?
+    height[:h] = 0
+    return 0
+  end
 
-  diameter = left_height + right_height
+  l_diameter = diameter_of_binary_tree(root.left, l_height)
+  r_diameter = diameter_of_binary_tree(root.right, r_height)
+  height[:h] = [l_height[:h], r_height[:h]].max + 1
 
-  left_diameter = diameter_of_binary_tree(root.left)
-  right_diameter = diameter_of_binary_tree(root.right)
-
-  [left_diameter, right_diameter, diameter].max
-end
-
-def height_of_tree(root)
-  return 0 if root.nil?
-
-  left = height_of_tree(root.left)
-  right = height_of_tree(root.right)
-
-  [left, right].max + 1
+  [l_height[:h] + r_height[:h], [l_diameter, r_diameter].max].max
 end
