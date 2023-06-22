@@ -30,14 +30,13 @@ def max_depth_dfs(root)
   result = 0
   return result if root.nil?
 
-  stack = [{ node: root, prev_h: result }]
+  stack = [[root, 1]]
 
   until stack.empty?
-    curr = stack.pop
-    height = curr[:prev_h] + 1
-    result = height if height > result
-    stack.push({ node: curr[:node].left, prev_h: height }) if curr[:node].left
-    stack.push({ node: curr[:node].right, prev_h: height }) if curr[:node].right
+    node, depth = stack.pop
+    result = depth if depth > result
+    stack.push([node.left, depth]) if node.left
+    stack.push([node.right, depth]) if node.right
   end
 
   result
