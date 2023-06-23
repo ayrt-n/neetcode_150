@@ -34,9 +34,10 @@ end
 # Space complexity: O(n)
 def recursive_same_tree?(p, q)
   return p == q if p.nil? || q.nil?
+  return false if p.val != q.val
 
   lsame = recursive_same_tree?(p.left, q.left)
   rsame = recursive_same_tree?(p.right, q.right)
 
-  lsame && rsame && (p.val == q.val)
+  lsame && rsame
 end
