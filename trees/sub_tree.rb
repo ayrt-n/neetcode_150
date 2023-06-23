@@ -12,8 +12,8 @@ class TreeNode
 end
 
 # Brute Force Solution
-# Time complexity: Unsure but feel like O(p * q) where p is # of root nodes and q is # of sub root nodes
-# Space complexity: Unsure but feel like O(p * q) where p is # of root nodes and q is # of sub root nodes
+# Time complexity: O(p * q) where p is # of root nodes and q is # of sub root nodes
+# Space complexity: O(p * q) where p is # of root nodes and q is # of sub root nodes
 def subtree?(root, sub_root)
   return true if root.nil? && sub_root.nil?
 
@@ -31,6 +31,18 @@ def subtree?(root, sub_root)
   false
 end
 
+# Recursive Solution
+# Time complexity: O(p * q) where p is # of root nodes and q is # of sub root nodes
+# Space complexity: O(p * q) where p is # of root nodes and q is # of sub root nodes
+def is_subtree(root, sub_root)
+  return true if sub_root.nil?
+  return false if root.nil?
+  return true if same_tree?(root, sub_root)
+
+  is_subtree(root.left, sub_root) || is_subtree(root.right, sub_root)
+end
+
+# Helper function to determine if trees are the same
 def same_tree?(p, q)
   return p == q if p.nil? || q.nil?
   return false if p.val != q.val
