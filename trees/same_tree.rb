@@ -11,6 +11,8 @@ class TreeNode
   end
 end
 
+# Time complexity: O(n)
+# Space complexity: O(n)
 def same_tree?(p, q)
   p_queue = [p]
   q_queue = [q]
@@ -25,4 +27,16 @@ def same_tree?(p, q)
   end
 
   p_queue.length == q_queue.length
+end
+
+# Recursive solution
+# Time complexity: O(n)
+# Space complexity: O(n)
+def recursive_same_tree?(p, q)
+  return p == q if p.nil? || q.nil?
+
+  lsame = recursive_same_tree?(p.left, q.left)
+  rsame = recursive_same_tree?(p.right, q.right)
+
+  lsame && rsame && (p.val == q.val)
 end
