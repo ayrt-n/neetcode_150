@@ -9,7 +9,7 @@ class MinHeap
   end
 
   def pop
-    return nil if @heap.empty?
+    return @heap.pop if @heap.size <= 1
 
     popped = @heap[0]
     @heap[0] = @heap.pop
