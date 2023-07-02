@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Time complexity:
-# Space complexity:
+# Time complexity: O(n2) where n2 is length of s2
+# Space complexity: O(n1) where n1 is length of s1
 def inclusion?(s1, s2)
   h1 = character_counts(s1)
   h2 = Hash.new(0)
