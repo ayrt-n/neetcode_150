@@ -1,25 +1,18 @@
 # frozen_string_literal: true
 
-# Time complexity: O(n^2)
+# Time complexity: O(n)
 # Space complexity: O(n)
 def daily_temperatures(temperatures)
-  res = []
+  res = Array.new(temperatures.length) { 0 }
+  stack = [{ temp: temperatures[0], index: 0 }]
 
-  0.upto(temperatures.length - 2) do |i|
-    count = 0
-
-    (i + 1).upto(temperatures.length - 1) do |j|
-      count += 1
-      if temperatures[i] < temperatures[j]
-        res << count
-        break
-      end
-      if j == temperatures.length - 1
-        res << 0
-        break
-      end
+  1.upto(temperatures.length - 1) do |i|
+    while !stack.empty? && temperatures[i] > stack[-1][:temp]
+      prev_temp = stack.pop
+      res[prev_temp[:index]] = i - prev_temp[:index]
     end
+    stack << { temp: temperatures[i], index: i }
   end
 
-  res.push(0)
+  res
 end
