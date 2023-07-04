@@ -3,19 +3,12 @@
 # Time complexity: O(n * logn)
 # Space complexity: O(n)
 def car_fleet(target, position, speed)
-  cars = []
-  0.upto(position.length - 1) { |i| cars << [position[i], speed[i]] }
-  cars.sort_by! { |car| -car[0] }
-
+  cars = position.each_index.map { |i| [position[i], speed[i]] }
   fleets = []
 
-  cars.each do |car|
-    if fleets.empty?
-      fleets << time_to_target(car, target)
-    else
-      eta = time_to_target(car, target)
-      fleets << eta if fleets[-1] < eta
-    end
+  cars.sort_by { |car| -car[0] }.each do |car|
+    eta = time_to_target(car, target)
+    fleets << eta if fleets.empty? || fleets[-1] < eta
   end
 
   fleets.length
