@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-# Time complexity:
-# Space complexity: 
+# Time complexity: Set operation O(n), Get operation O(logn)
+# Space complexity: O(n)
 class TimeMap
   def initialize
     @keys = Hash.new { |h, k| h[k] = [] }
   end
 
+  # From problem: All timestamps of set are strictly increasing
   def set(key, value, timestamp)
     @keys[key] << TimeValue.new(timestamp, value)
-    @keys[key].sort_by { |e| e.timestamp }
   end
 
   def get(key, timestamp)
