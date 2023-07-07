@@ -5,14 +5,18 @@
 def find_min(nums)
   l = 0
   r = nums.length - 1
+  res = nums[0]
 
-  while l < r
+  while l <= r
+    if nums[l] < nums[r]
+      res = [res, nums[l]].min
+      break
+    end
+
     m = (l + r) / 2
-    mval = nums[m]
-    return mval if mval < nums[m - 1] && mval < nums[m + 1]
-
-    nums[m - 1] < nums[r] ? r = m - 1 : l = m + 1
+    res = [res, nums[m]].min
+    nums[m] >= nums[l] ? l = m + 1 : r = m - 1
   end
 
-  nums[l]
+  res
 end
