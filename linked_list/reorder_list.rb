@@ -16,9 +16,10 @@ end
 # Space complexity: O(1)
 def reorder_list(head)
   first = head
-  second = find_second_half(head)
-  second = reverse_linked_list(second)
-  
+  halfway = return_list_middle(head)
+  second = reverse_linked_list(halfway.next)
+  halfway.next = nil
+
   until second.nil?
     tmp = second.next
     second.next = first.next
@@ -26,34 +27,30 @@ def reorder_list(head)
     second = tmp
     first = first.next.next
   end
-
-  first.next = nil unless first.nil?
 end
 
-# Takes head of linked list, returns the node of the start of second half
-def find_second_half(head)
+# Takes head of linked list, returns the middle node
+def return_list_middle(head)
   slow = head
   fast = head.next
 
-  # Traverse list until fast finds the end
   until fast.nil? || fast.next.nil?
     slow = slow.next
     fast = fast.next.next
   end
 
-  # Once end found, slow.next will be the start of the second half
-  slow.next
+  slow
 end
 
 def reverse_linked_list(node)
-  curr = nil
-  next_node = node
+  prev = nil
+  curr = node
 
-  until next_node.nil?
-    tmp = next_node.next
-    next_node.next = curr
-    curr = next_node
-    next_node = tmp
+  until curr.nil?
+    tmp = curr.next
+    curr.next = prev
+    prev = curr
+    curr = tmp
   end
 
   curr
