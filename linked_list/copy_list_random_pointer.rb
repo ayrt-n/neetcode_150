@@ -14,32 +14,21 @@ end
 # Time complexity: O(n)
 # Space complexity: O(n)
 def copyRandomList(head)
-  res = Node.new(0)
-  node_list = {}
+  old_to_new = { nil: nil }
 
-  old = head
-  curr = res
-  until old.nil?
-    if node_list[old]
-      curr.next = node_list[old]
-    else
-      curr.next = Node.new(old.val)
-      node_list[old] = curr.next
-    end
-
-    curr = curr.next
-
-    if old.random
-      if node_list[old.random]
-        curr.random = node_list[old.random]
-      else
-        curr.random = Node.new(old.random.val)
-        node_list[old.random] = curr.random
-      end
-    end
-
-    old = old.next
+  curr = head
+  while curr
+    old_to_new[curr] = Node.new(curr.val)
+    curr.next
   end
 
-  res.next
+  curr = head
+  while curr
+    copy = old_to_new[curr]
+    copy.next = old_to_new[curr.next]
+    copy.random = old_to_new[curr.random]
+    curr = curr.next
+  end
+
+  old_to_new[head]
 end
