@@ -19,13 +19,8 @@ def reorder_list(head)
   curr = nil
 
   0.upto((len - 1) / 2) do |i|
-    if curr
-      curr.next = nodes[i]
-      nodes[i].next = nodes[len - 1 - i]
-    else
-      nodes[i].next = nodes[len - 1 - i]
-    end
-
+    curr.next = nodes[i] if curr
+    nodes[i].next = nodes[len - 1 - i]
     curr = nodes[len - 1 - i]
   end
 
