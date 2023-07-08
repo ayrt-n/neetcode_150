@@ -13,23 +13,16 @@ end
 # Time complexity: O(n)
 # Space complexity: O(1)
 def remove_nth_from_end(head, n)
-  prev = nil
-  lag = head
-  next_node = head.next
+  dummy = ListNode.new(0, head)
+  curr = dummy
   lead = head
   n.times { lead = lead.next }
 
   until lead.nil?
-    prev = lag
-    lag = next_node
-    next_node = lag.next
+    curr = curr.next
     lead = lead.next
   end
 
-  if prev.nil?
-    next_node
-  else
-    prev.next = next_node
-    head
-  end
+  curr.next = curr.next.next
+  dummy.next
 end
