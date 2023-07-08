@@ -11,8 +11,8 @@ class ListNode
   end
 end
 
-# Time complexity: 
-# Space complexity:
+# Time complexity: O(n)
+# Space complexity: O(n)
 def reorder_list(head)
   nodes = linked_list_nodes(head)
   len = nodes.length
