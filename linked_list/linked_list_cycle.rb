@@ -10,18 +10,36 @@ class ListNode
   end
 end
 
+# CONSTANT SPACE SOLUTION
 # Time complexity: O(n)
-# Space complexity: O(n)
+# Space complexity: O(1)
 def cycle?(head)
-  visited = {}
-  curr = head
+  slow = head
+  fast = head
 
-  until curr.nil?
-    return true if visited[curr]
+  until fast.nil? || fast.next.nil?
+    slow = slow.next
+    fast = fast.next.next
 
-    visited[curr] = true
-    curr = curr.next
+    return true if slow == fast
   end
 
   false
 end
+
+# LINEAR SPACE SOLUTION
+# Time complexity: O(n)
+# Space complexity: O(n)
+# def cycle?(head)
+#   visited = {}
+#   curr = head
+
+#   until curr.nil?
+#     return true if visited[curr]
+
+#     visited[curr] = true
+#     curr = curr.next
+#   end
+
+#   false
+# end
