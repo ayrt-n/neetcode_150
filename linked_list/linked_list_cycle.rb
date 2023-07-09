@@ -10,8 +10,8 @@ class ListNode
   end
 end
 
-# Time complexity:
-# Space complexity:
+# Time complexity: O(n)
+# Space complexity: O(n)
 def cycle?(head)
   visited = {}
   curr = head
