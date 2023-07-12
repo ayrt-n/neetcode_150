@@ -11,6 +11,26 @@ class TreeNode
   end
 end
 
+# ITERATIVE SOLUTION
+# Time complexity: O(logn)
+# Space complexity: O(1)
+def lowest_common_ancestor(root, p, q)
+  curr = root
+
+  while curr
+    if p.val < root.val && q.val < root.val
+      curr = curr.left
+    elsif p.val > root.val && q.val > root.val
+      curr = curr.right
+    else
+      return curr
+    end
+  end
+
+  nil
+end
+
+# RECURSIVE SOLUTION
 # Time complexity: O(logn)
 # Space complexity: O(1)
 def lowest_common_ancestor(root, p, q)
