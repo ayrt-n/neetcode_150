@@ -1,4 +1,4 @@
-# frozen_string_literal: true
+# frozne_string_literal: true
 
 # Definition for binary tree node
 class TreeNode
@@ -13,20 +13,18 @@ end
 
 # Time complexity: O(n)
 # Space complexity: O(n)
-def level_order(root)
+def right_side_view(root)
   res = []
+  return res if root.nil?
+
   queue = [root]
-
   until queue.empty?
-    level = []
-    queue.length.times do
+    queue.length.times do |i|
       node = queue.shift
-      next if node.nil?
-
-      level.push(node.val)
-      queue.push(node.left, node.right)
+      res.push(node.val) if i.zero?
+      queue.push(node.right) if node.right
+      queue.push(node.left) if node.left
     end
-    res.push(level) unless level.empty?
   end
 
   res

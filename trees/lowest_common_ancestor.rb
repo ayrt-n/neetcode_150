@@ -1,4 +1,4 @@
-# frozne_string_literal: true
+# frozen_string_literal: true
 
 # Definition for binary tree node
 class TreeNode
