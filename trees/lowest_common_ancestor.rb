@@ -12,7 +12,7 @@ class TreeNode
 end
 
 # Time complexity: O(logn)
-# Space complexity: O(logn)
+# Space complexity: O(1)
 def lowest_common_ancestor(root, p, q)
   return root if (p.val <= root.val && q.val >= root.val) || (p.val >= root.val && q.val <= root.val)
 
