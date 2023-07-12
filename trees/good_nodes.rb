@@ -15,13 +15,16 @@ end
 # Space complexity: O(n)
 def good_nodes(root, max = root.val)
   return 0 if root.nil?
-  current_max = root.val > max ? root.val : max
 
-  left_good_nodes = good_nodes(root.left, current_max)
-  right_good_nodes = good_nodes(root.right, current_max)
-  
-  good_nodes = left_good_nodes + right_good_nodes
-  good_nodes += 1 if current_max == root.val
+  good_nodes_dfs(root, root.val)
+end
+
+def good_nodes_dfs(node, max)
+  return 0 if node.nil?
+
+  current_max = node.val > max ? node.val : max
+  good_nodes = good_nodes_dfs(node.left, current_max) + good_nodes_dfs(node.right, current_max)
+  good_nodes += 1 if current_max == node.val
 
   good_nodes
 end
