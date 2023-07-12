@@ -11,34 +11,14 @@ class TreeNode
   end
 end
 
-# Time complexity: O(n * d)
-# Space complexity: O(n)
+# Time complexity: O(logn)
+# Space complexity: O(logn)
 def lowest_common_ancestor(root, p, q)
-  lca = nil
-  queue = [root]
+  return root if (p.val <= root.val && q.val >= root.val) || (p.val >= root.val && q.val <= root.val)
 
-  until queue.empty?
-    curr = queue.shift
-    next if curr.nil?
-
-    lca = curr if descendants?(curr, p, q)
-    queue.push(curr.left, curr.right)
+  if p.val < root.val && q.val < root.val
+    lowest_common_ancestor(root.left, p, q)
+  else
+    lowest_common_ancestor(root.right, p, q)
   end
-
-  lca
-end
-
-def descendants?(root, p, q)
-  queue = [root]
-  found = []
-
-  until queue.empty? || found.length == 2
-    curr = queue.shift
-    next if curr.nil?
-
-    found << curr if curr.val == p.val || curr.val == q.val
-    queue.push(curr.left, curr.right)
-  end
-
-  found.length == 2
 end
