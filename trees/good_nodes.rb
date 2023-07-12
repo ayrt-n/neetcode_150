@@ -13,7 +13,7 @@ end
 
 # Time complexity: O(n)
 # Space complexity: O(n)
-def good_nodes(root, max = root.val)
+def good_nodes(root)
   return 0 if root.nil?
 
   good_nodes_dfs(root, root.val)
