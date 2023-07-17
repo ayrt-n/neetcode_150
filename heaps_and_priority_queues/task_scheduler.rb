@@ -17,7 +17,7 @@ def least_interval(tasks, n)
     task = remaining.pop
 
     # Add task to cooldown queue if task has greater than one remaining
-    cooldown.push([task, res + n]) if task && task > 1
+    cooldown.push([task - 1, res + n]) if task && task > 1
 
     # Pop from cooldown queue if cooldown is done
     remaining.push(cooldown.shift[0]) if cooldown[0] && cooldown[0][1] == res
