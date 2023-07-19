@@ -6,9 +6,9 @@ def combination_sum(candidates, target, res = [], combination = [])
   res.push(combination.dup) if combination.sum == target
   return if combination.sum >= target
 
-  candidates.each do |c|
-    combination.push(c)
-    combination_sum(candidates, target, res, combination)
+  (0...candidates.length).each do |i|
+    combination.push(candidates[i])
+    combination_sum(candidates[i..], target, res, combination)
     combination.pop
   end
 
