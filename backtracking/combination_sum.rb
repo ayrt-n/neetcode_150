@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 
-# Time complexity:O(n * 2^n)
-# Space complexity: O(n * 2^n)
+# Time complexity:O(2 ^ t) where t is the target value
 def combination_sum(candidates, target, res = [], combination = [])
   res.push(combination.dup) if combination.sum == target
   return if combination.sum >= target
