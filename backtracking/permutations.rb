@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Time complexity:
-# Space complexity:
+# Time complexity: O(n!)
+# Space complexity: O(n!)
 def permute(nums, res = [], perm = [])
   res.push(perm.dup) && return if nums.empty?
 
