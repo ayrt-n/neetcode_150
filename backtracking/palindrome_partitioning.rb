@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-# Time complexity:
-# Space complexity:
+# Time complexity: O(2^n)
+# Space complexity: O(n^2)
 def partition(s)
   backtrack(s, 0)
 end
