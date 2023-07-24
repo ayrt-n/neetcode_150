@@ -5,24 +5,23 @@
 def num_islands(grid)
   islands = 0
   visited = Set.new
+  rows = grid.length
+  cols = grid[0].length
 
-  (0...grid.length).each do |r|
-    (0...grid[0].length).each do |c|
-      next if visited.include?([r, c])
+  (0...rows).each do |r|
+    (0...cols).each do |c|
+      next if grid[r][c] == '0' || visited.include?([r, c])
 
-      visited << [r, c]
-      if grid[r][c] == '1'
-        islands += 1
-        queue = [[r, c]]
+      islands += 1
+      queue = [[r, c]]
+      until queue.empty?
+        cr, cc = queue.shift
+        next if visited.include?([cr, cc])
 
-        until queue.empty?
-          r2, c2  = queue.shift
-          visited << [r2, c2]
-          next unless grid[r2][c2] == '1'
+        visited << [cr, cc]
 
-          [[r2 + 1, c2], [r2 - 1, c2], [r2, c2 + 1], [r2, c2 - 1]].each do |coord|
-            queue << coord if in_bounds?(grid, coord[0], coord[1]) && !visited.include?(coord)
-          end
+        [[cr + 1, cc], [cr - 1, cc], [cr, cc + 1], [cr, cc - 1]].each do |coord|
+          queue << [coord[0], coord[1]] if in_bounds?(rows, cols, coord[0], coord[1]) && grid[coord[0]][coord[1]] == '1'
         end
       end
     end
@@ -31,8 +30,7 @@ def num_islands(grid)
   islands
 end
 
-# Checks if given row and column are within boundaries of board
-# Returns bool
-def in_bounds?(grid, row, col)
-  row < grid.length && col < grid[0].length && row >= 0 && col >= 0
+# Checks if given row and col are in bounds and returns bool
+def in_bounds?(max_row, max_col, row, col)
+  row < max_row && col < max_col && row >= 0 && col >= 0
 end
