@@ -10,8 +10,8 @@
 #   end
 # end
 
-# Time complexity:
-# Space complexity:
+# Time complexity: O(n)
+# Space complexity: O(n)
 def clone_graph(node)
   return nil unless node
   
