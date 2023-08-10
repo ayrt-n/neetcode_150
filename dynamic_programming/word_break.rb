@@ -3,17 +3,15 @@
 # Time complexity: O(n * dict)
 # Space complexity: O(1)
 def word_break(s, word_dict)
-  recurse(s, word_dict)
-end
+  dp = Array.new(s.length + 1) { false }
+  dp[s.length] = true
 
-def recurse(s, word_dict, memo = {})
-  return true if word_dict.include?(s)
-  return false if memo[s] == false
-
-  word_dict.each do |w|
-    next unless s[0...w.length] == w
-    return true if recurse(s[w.length..], word_dict, memo)
+  (s.length - 1).downto(0) do |i|
+    word_dict.each do |word|
+      dp[i] = dp[i + word.length] if s[i...i + word.length] == word
+      break if dp[i]
+    end
   end
 
-  memo[s] = false
+  dp[0]
 end
