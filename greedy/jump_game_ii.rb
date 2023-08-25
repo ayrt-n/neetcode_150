@@ -1,5 +1,23 @@
 # frozen_string_literal: true
 
+# Greedy Solution
+# Time complexity: O(n)
+# Space complexity: O(1)
+def jump(nums)
+  res = 0
+  left, right = [0, 0]
+
+  while right < nums.length - 1
+    farthest = 0
+    (left..right).each { |i| farthest = [farthest, i + nums[i]].max }
+    left = right + 1
+    right = farthest
+    res += 1
+  end
+
+  res
+end
+
 # Dynamic Programming Solution
 # Time complexity: O(n^2)
 # Space complexity: O(n)
