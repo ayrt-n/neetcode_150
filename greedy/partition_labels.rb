@@ -2,8 +2,9 @@
 
 require 'set'
 
-# Time complexity:
-# Space complexity:
+# Count Solution
+# Time complexity: O(n)
+# Space complexity: O(1)
 def partition_labels(s)
   res = []
   counts = Hash.new(0)
@@ -18,6 +19,26 @@ def partition_labels(s)
     if remaining.empty?
       res << i + 1 - prev_partition
       prev_partition = i + 1
+    end
+  end
+
+  res
+end
+
+# Final Index Solution
+def partition_labels(s)
+  res = []
+  last_index = {}
+  (0...s.length).each { |i| last_index[s[i]] = i }
+
+  furthest = 0
+  size = 0
+  (0...s.length).each do |i|
+    size += 1
+    furthest = [furthest, last_index[s[i]]].max
+    if furthest == i
+      res << size
+      size = 0
     end
   end
 
